@@ -1,14 +1,19 @@
 {
   "private": true,
-  "mode": "development",
   "scripts": {
     "start": "webpack serve",
     "watch": "webpack --watch",
     "build": "webpack"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.3"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }

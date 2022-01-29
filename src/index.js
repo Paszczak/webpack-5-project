@@ -3,4 +3,10 @@ const pastaRecipe = {
   flour: 400,
 }
 
-console.log('[WEBPACK] Working...', pastaRecipe)
+const deliciousPastaRecipe = {
+  ...pastaRecipe,
+  eggs: 5,
+}
+
+console.log('[WEBPACK]', pastaRecipe)
+console.log('[WEBPACK]', deliciousPastaRecipe)
