@@ -1,14 +1,6 @@
-import "./styles/style.scss";
+import React from 'react';
+import { render } from 'react-dom'
 
-const pastaRecipe = {
-  eggs: 4,
-  flour: 400,
-}
+import App from './components/App'
 
-const deliciousPastaRecipe = {
-  ...pastaRecipe,
-  eggs: 5,
-}
-
-console.log('[WEBPACK]', pastaRecipe)
-console.log('[WEBPACK]', deliciousPastaRecipe)
+render(<App />, document.getElementById("root"))

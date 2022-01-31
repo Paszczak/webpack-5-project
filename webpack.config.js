@@ -23,7 +23,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -32,6 +32,13 @@ module.exports = {
     ]
   },
 
+  // Changes how modules are resolved.
+  resolve: {
+    extensions: [".js", ".jsx"], // If multiple files share the same name but have different extensions, webpack will resolve the one with the extension listed first in the array and skip the rest
+  },
+
+
+  // Webpack sserver settings
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
