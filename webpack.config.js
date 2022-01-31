@@ -14,7 +14,7 @@ module.exports = {
   devtool: "source-map",
   target: target,
 
-  // Target path for asetss
+  // Target path for default dist folder (required by clean-webpack-plugin) and asetss
   output: {
     path: path.join(__dirname, "dist"), //
     assetModuleFilename: "images/[hash][ext][query]",
