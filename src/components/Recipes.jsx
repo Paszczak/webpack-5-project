@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import me from '../images/IMG_3998.png';
+
 const pastaRecipe = {
   eggs: 4,
   flour: 400,
@@ -19,6 +21,7 @@ export default function Recipes() {
   return (
     <>
       <h3>Current Recipe</h3>
+      <img src={me} alt='me' width='250' />
     </>
   );
 }

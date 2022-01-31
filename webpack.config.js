@@ -12,6 +12,12 @@ module.exports = {
   devtool: "source-map",
   target: target,
 
+  // Target path for asetss
+  output: {
+    path: path.join(__dirname, 'dist'),
+    assetModuleFilename: "images/[hash][ext][query]",
+  },
+
   //Plugins
   plugins: [new MiniCssExtractPlugin()],
 
@@ -19,8 +25,26 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: "asset/resource", // "assets/inline" for small resources like svg images, "asset" webpack desides if inline or resource
+      },
+      {
+        test: /\.svg$/i,
+        type: "asset/inline",
+      },
+      {
         test: /\.(s[ac]|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ""
+            },
+          }
+          ,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"],
       },
       {
         test: /\.jsx?$/,
