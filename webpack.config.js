@@ -2,6 +2,8 @@ const path = require('path');
 
 // Plugins
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 // Setting mode for production in build script!!!
 let mode = process.env.NODE_ENV === "production" ? "production" : "development";
@@ -14,16 +16,23 @@ module.exports = {
 
   // Target path for asetss
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, "dist"), //
     assetModuleFilename: "images/[hash][ext][query]",
   },
 
   //Plugins
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(), // Should be at top?
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
 
   // Webpack reads right to left!!!
   module: {
     rules: [
+      // Images
       {
         test: /\.(png|jpe?g|gif)$/i,
         type: "asset/resource", // "assets/inline" for small resources like svg images, "asset" webpack desides if inline or resource
@@ -32,6 +41,7 @@ module.exports = {
         test: /\.svg$/i,
         type: "asset/inline",
       },
+      // Css, Sass
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
@@ -46,6 +56,7 @@ module.exports = {
           "postcss-loader",
           "sass-loader"],
       },
+      // Babel
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
